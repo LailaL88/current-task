@@ -1,0 +1,97 @@
+$sliderWidth : 380px;
+$sliderHeight : 210px;
+$sliderColor : grey;
+$buttonTop : 40%;
+$buttonTopMobile : 35%;
+$buttonHorizontalDistance : 70px;
+$buttonHorizontalDistanceMobile: 50px;
+@mixin SliderSize {
+    width: $sliderWidth;
+    height:$sliderHeight;
+}
+
+@mixin ArrowPosition {
+    top: $buttonTop;
+    right: $buttonHorizontalDistance;
+}
+
+
+.slider-container {
+    @include  SliderSize();
+    margin: 0 auto;
+    border: 2px solid $sliderColor;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+i {
+    position: absolute;
+    border-radius: 100%;
+    color: $sliderColor;
+    font-size: 30px;
+}
+
+.nextBtn {
+    @include ArrowPosition();
+}
+
+.prevBtn {
+    @include ArrowPosition();
+}
+
+.wrapper {
+    width: 660px;
+    position: relative;
+    margin: 0 auto;
+    text-align:center;
+}
+
+button {
+    margin: 5px 5px 0px 5px;
+}
+
+.slider{
+    transform:translateX(-$sliderWidth);
+    display: flex;
+    img {
+        width:100%;
+    }
+    li {
+        @include  SliderSize();
+        flex-shrink: 0;
+        flex-basis: 100%;
+        list-style-type: none;
+    }
+}
+
+@media only screen and (max-width:686px) {
+    .wrapper {
+        width: 100%;
+    }
+    .slider-container {
+        width: 240px;
+        height: 140px;
+ 
+    }
+
+    .slider {
+        transform:translateX(-240px);
+    }
+
+    .nextBtn {
+        top: $buttonTopMobile;
+    }
+
+    .prevBtn{
+        top:$buttonTopMobile;
+    }
+}
+
+@media only screen and (min-width:686px){
+    .nextBtn{
+        right: $buttonHorizontalDistanceMobile;
+    }
+    .prevBtn{
+        left: $buttonHorizontalDistanceMobile;
+    }
+}

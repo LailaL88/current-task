@@ -32,7 +32,8 @@ i {
 }
 
 button {
-  height: 10px;
+  height: 20px;
+  width: 40px;
   margin: 8px 10px 0px 10px;
 }
 
@@ -72,11 +73,11 @@ button {
   }
   .nextBtn {
     top: 35%;
-    right: 70px;
+    right: 10px;
   }
   .prevBtn {
     top: 35%;
-    left: 70px;
+    left: 10px;
   }
 }
 /*# sourceMappingURL=App.css.map */

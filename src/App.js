@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
-import './App.scss';
+import "./App.scss";
 
 let count = 1;
 let query = window.matchMedia("(max-width: 686px)");
@@ -31,23 +31,23 @@ class App extends React.Component {
       "pic7",
       this.firstImg,
     ];
-    this.Previous = this.Previous.bind(this);
-    this.Next = this.Next.bind(this);
-    this.GoToSlide = this.GoToSlide.bind(this);
-    this.Swipe = this.Swipe.bind(this);
-    this.MoveTouch = this.MoveTouch.bind(this);
+    this.previous = this.previous.bind(this);
+    this.next = this.next.bind(this);
+    this.goToSlide = this.goToSlide.bind(this);
+    this.swipe = this.swipe.bind(this);
+    this.moveTouch = this.moveTouch.bind(this);
   }
 
-  Swipe() {
+  swipe() {
     this.slider.current.addEventListener("touchstart", this.StartTouch, false);
     this.slider.current.addEventListener("touchmove", this.MoveTouch, false);
   }
 
-  StartTouch(e) {
+  startTouch(e) {
     initialX = e.touches[0].clientX;
     initialY = e.touches[0].clientY;
   }
-  MoveTouch(e) {
+  moveTouch(e) {
     if (initialX === null) {
       return;
     }
@@ -63,12 +63,9 @@ class App extends React.Component {
     diffY = initialY - currentY;
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
-      // sliding horizontally
       if (diffX >= 0) {
-        // swiped left
         this.Next();
       } else {
-        // swiped right
         this.Previous();
       }
     }
@@ -78,7 +75,7 @@ class App extends React.Component {
     e.preventDefault();
   }
 
-  Previous() {
+  previous() {
     if (query.matches) {
       size = 240;
     }
@@ -96,7 +93,7 @@ class App extends React.Component {
     });
   }
 
-  Next() {
+  next() {
     if (query.matches) {
       size = 240;
     }
@@ -114,32 +111,30 @@ class App extends React.Component {
     });
   }
 
-  GoToSlide(num) {
-      console.log("this is num", num);
+  goToSlide = (num) => () => {
+    count = num;
     if (query.matches) {
       size = 240;
     }
     this.slider.current.style.transform = "translateX(" + -size * num + "px)";
-  }
-
+  };
 
   render() {
     return (
       <div className="wrapper">
         <nav>
           <i className="prevBtn">
-            <FaArrowCircleLeft onClick={this.Previous} />
+            <FaArrowCircleLeft onClick={this.previous} />
           </i>
           <i className="nextBtn">
-            <FaArrowCircleRight onClick={this.Next} />
+            <FaArrowCircleRight onClick={this.next} />
           </i>
         </nav>
-        <div class="slider-container">
+        <div className="slider-container">
           <div
-            class="slider"
-            id="sliderid"
+            className="slider"
             ref={this.slider}
-            onTouchStart={this.Swipe}
+            onTouchStart={this.swipe}
           >
             <li ref={this.lastImg}>
               <img
@@ -198,15 +193,13 @@ class App extends React.Component {
           </div>
         </div>
         <nav>
-        
-           <button onClick={this.GoToSlide(1)}></button>
-          <button onClick={this.GoToSlide(2)}></button>
-          <button onClick={this.GoToSlide(3)}></button>
-          <button onClick={this.GoToSlide(4)}></button>
-          <button onClick={this.GoToSlide(5)}></button>
-          <button onClick={this.GoToSlide(6)}></button>
-          <button onClick={this.GoToSlide(7)}></button>
-          
+          <button onClick={this.goToSlide(1)}></button>
+          <button onClick={this.goToSlide(2)}></button>
+          <button onClick={this.goToSlide(3)}></button>
+          <button onClick={this.goToSlide(4)}></button>
+          <button onClick={this.goToSlide(5)}></button>
+          <button onClick={this.goToSlide(6)}></button>
+          <button onClick={this.goToSlide(7)}></button>
         </nav>
       </div>
     );

@@ -10,12 +10,6 @@ $buttonHorizontalDistanceMobile: 50px;
     height:$sliderHeight;
 }
 
-@mixin ArrowPosition {
-    top: $buttonTop;
-    right: $buttonHorizontalDistance;
-}
-
-
 .slider-container {
     @include  SliderSize();
     margin: 0 auto;
@@ -32,11 +26,13 @@ i {
 }
 
 .nextBtn {
-    @include ArrowPosition();
+    top: $buttonTop;
+    right: $buttonHorizontalDistance;
 }
 
 .prevBtn {
-    @include ArrowPosition();
+    top: $buttonTop;
+    left: $buttonHorizontalDistance;
 }
 
 .wrapper {

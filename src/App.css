@@ -57,4 +57,24 @@ button {
       flex-basis: 100%;
   list-style-type: none;
 }
+
+@media only screen and (max-width: 686px) {
+  .wrapper {
+    width: 100%;
+  }
+  .slider-container {
+    width: 240px;
+    height: 140px;
+  }
+  .slider {
+    -webkit-transform: translateX(-240px);
+    transform: translateX(-240px);
+  }
+  .nextBtn {
+    top: 35%;
+  }
+  .prevBtn {
+    top: 35%;
+  }
+}
 /*# sourceMappingURL=App.css.map */

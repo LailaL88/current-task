@@ -72,9 +72,11 @@ button {
   }
   .nextBtn {
     top: 35%;
+    right: 70px;
   }
   .prevBtn {
     top: 35%;
+    left: 70px;
   }
 }
 /*# sourceMappingURL=App.css.map */

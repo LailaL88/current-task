@@ -4,7 +4,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
        path: path.resolve('dist'),
-       filename: 'main.js'
+       filename: 'bundle.js'
     },
     // define babel loader
     module: {

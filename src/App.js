@@ -39,8 +39,8 @@ class App extends React.Component {
   }
 
   swipe() {
-    this.slider.current.addEventListener("touchstart", this.StartTouch, false);
-    this.slider.current.addEventListener("touchmove", this.MoveTouch, false);
+    this.slider.current.addEventListener("touchstart", this.startTouch, false);
+    this.slider.current.addEventListener("touchmove", this.moveTouch, false);
   }
 
   startTouch(e) {
@@ -64,9 +64,9 @@ class App extends React.Component {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       if (diffX >= 0) {
-        this.Next();
+        this.next();
       } else {
-        this.Previous();
+        this.previous();
       }
     }
     initialX = null;

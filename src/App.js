@@ -4,8 +4,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 import "./App.scss";
 
 let count = 1;
-let query = window.matchMedia("(max-width: 686px)");
-let size = 380;
+let size = 680;
 
 let initialX = null;
 let initialY = null;
@@ -76,9 +75,6 @@ class App extends React.Component {
   }
 
   previous() {
-    if (query.matches) {
-      size = 240;
-    }
     if (count <= 0) return;
     count--;
     this.slider.current.style.transform = "translateX(" + -size * count + "px)";
@@ -94,9 +90,6 @@ class App extends React.Component {
   }
 
   next() {
-    if (query.matches) {
-      size = 240;
-    }
     if (count >= 8) return;
     count++;
     this.slider.current.style.transform = "translateX(" + -size * count + "px)";
@@ -113,9 +106,6 @@ class App extends React.Component {
 
   goToSlide = (num) => () => {
     count = num;
-    if (query.matches) {
-      size = 240;
-    }
     this.slider.current.style.transform = "translateX(" + -size * num + "px)";
   };
 

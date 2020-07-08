@@ -1,15 +1,14 @@
-$sliderWidth : 380px;
-$sliderHeight : 210px;
+$sliderWidth : 680px;
+$sliderHeight : 390px;
 $sliderColor : grey;
 $buttonTop : 40%;
 $buttonTopMobile : 35%;
-$buttonHorizontalDistance : 70px;
-$buttonHorizontalDistanceMobile: 50px;
+$buttonHorizontalDistance :-45px;
+$buttonHorizontalDistanceMobile: -25px;
 @mixin SliderSize {
     width: $sliderWidth;
     height:$sliderHeight;
 }
-
 .slider-container {
     @include  SliderSize();
     margin: 0 auto;
@@ -36,14 +35,15 @@ i {
 }
 
 .wrapper {
-    width: 660px;
+    width: 750px;
     position: relative;
     margin: 0 auto;
     text-align:center;
 }
 
 button {
-    margin: 5px 5px 0px 5px;
+    height: 10px;
+    margin: 8px 10px 0px 10px;
 }
 
 .slider{
@@ -57,37 +57,5 @@ button {
         flex-shrink: 0;
         flex-basis: 100%;
         list-style-type: none;
-    }
-}
-
-@media only screen and (max-width:686px) {
-    .wrapper {
-        width: 100%;
-    }
-    .slider-container {
-        width: 240px;
-        height: 140px;
- 
-    }
-
-    .slider {
-        transform:translateX(-240px);
-    }
-
-    .nextBtn {
-        top: $buttonTopMobile;
-    }
-
-    .prevBtn{
-        top:$buttonTopMobile;
-    }
-}
-
-@media only screen and (min-width:686px){
-    .nextBtn{
-        right: $buttonHorizontalDistanceMobile;
-    }
-    .prevBtn{
-        left: $buttonHorizontalDistanceMobile;
     }
 }

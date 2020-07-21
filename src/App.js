@@ -2,6 +2,8 @@ import React from "react";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
 import "./App.scss";
+import Slides from "./slides.js"
+import Buttons from "./buttons.js"
 
 let count = 1;
 let query = window.matchMedia("(max-width: 686px)");
@@ -20,22 +22,19 @@ class App extends React.Component {
     this.slider = React.createRef();
     this.lastImg = React.createRef();
     this.firstImg = React.createRef();
-    this.images = [
-      this.lastImg,
-      "pic1",
-      "pic2",
-      "pic3",
-      "pic4",
-      "pic5",
-      "pic6",
-      "pic7",
-      this.firstImg,
-    ];
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
     this.goToSlide = this.goToSlide.bind(this);
     this.swipe = this.swipe.bind(this);
     this.moveTouch = this.moveTouch.bind(this);
+  }
+
+  componentDidMount(){
+    let firstSlide = this.slider.current.children[0].cloneNode(true);
+    let lastSlide = this.slider.current.children[this.slider.current.children.length - 1].cloneNode(true);
+    this.slider.current.insertBefore(lastSlide, this.slider.current.children[0]);
+    this.slider.current.append(firstSlide);
+    
   }
 
   swipe() {
@@ -84,9 +83,9 @@ class App extends React.Component {
     this.slider.current.style.transform = "translateX(" + -size * count + "px)";
     this.slider.current.style.transition = "transform 1s ease-in-out";
     this.slider.current.addEventListener("transitionend", () => {
-      if (this.images[count] === this.lastImg) {
+      if (count === 0) {
         this.slider.current.style.transition = "none";
-        count = 7;
+        count = this.slider.current.children.length - 2;
         this.slider.current.style.transform =
           "translateX(" + -size * count + "px)";
       }
@@ -97,12 +96,12 @@ class App extends React.Component {
     if (query.matches) {
       size = 240;
     }
-    if (count >= 8) return;
+    if (count >= this.slider.current.children.length -1) return;
     count++;
     this.slider.current.style.transform = "translateX(" + -size * count + "px)";
     this.slider.current.style.transition = "transform 1s ease-in-out";
     this.slider.current.addEventListener("transitionend", () => {
-      if (this.images[count] === this.firstImg) {
+      if (count === this.slider.current.children.length -1) {
         this.slider.current.style.transition = "none";
         count = 1;
         this.slider.current.style.transform =
@@ -119,7 +118,9 @@ class App extends React.Component {
     this.slider.current.style.transform = "translateX(" + -size * num + "px)";
   };
 
+
   render() {
+    
     return (
       <div className="wrapper">
         <nav>
@@ -136,70 +137,11 @@ class App extends React.Component {
             ref={this.slider}
             onTouchStart={this.swipe}
           >
-            <li ref={this.lastImg}>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic7.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic1.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic2%20.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic3.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic4.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic5.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic6.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic7.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
-            <li ref={this.firstImg}>
-              <img
-                src="https://github.com/LailaL88/test-task/blob/master/pic1.jpg?raw=true"
-                alt=""
-              ></img>
-            </li>
+            <Slides />
           </div>
         </div>
         <nav>
-          <button onClick={this.goToSlide(1)}></button>
-          <button onClick={this.goToSlide(2)}></button>
-          <button onClick={this.goToSlide(3)}></button>
-          <button onClick={this.goToSlide(4)}></button>
-          <button onClick={this.goToSlide(5)}></button>
-          <button onClick={this.goToSlide(6)}></button>
-          <button onClick={this.goToSlide(7)}></button>
+      <Buttons goToSlide = {this.goToSlide}/>
         </nav>
       </div>
     );
